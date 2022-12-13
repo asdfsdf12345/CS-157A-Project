@@ -16,8 +16,8 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/api/get/exercises", (req,res)=> {
-const sqlSelect = "SELECT * FROM exercises";
-    db.query(sqlSelect, (err,result) =>{
+const sqlSelect = "SELECT * FROM all_exercises WHERE userID = ?;";
+    db.query(sqlSelect, [user],(err,result) =>{
         res.send(result);
         
     });
@@ -48,8 +48,8 @@ app.get("/api/get/routines", (req,res)=> {
     });
     
 app.get("/api/get/foods", (req,res)=> {
-    const sqlSelect = "SELECT * FROM food_items ";
-        db.query(sqlSelect, (err,result) =>{
+    const sqlSelect = "SELECT * FROM ingredients WHERE addedBy = ? ";
+        db.query(sqlSelect, [user], (err,result) =>{
             res.send(result);
         });
     });
@@ -133,11 +133,12 @@ app.post("/api/insert/exercises", (req,res) => {
 app.post("/api/insert/history", (req,res) => {
 
     const exercise = req.body.exercise;
-    const caloricUsage= req.body.caloricUsage;
+    const time = req.body.time;
+    const date = req.body.date;
 
     const sqlInsert = 
-    "INSERT INTO exercises (name, caloricUsage) VALUES (?,?);";
-    db.query(sqlInsert, [exercise, caloricUsage], (err,result) => {
+    "INSERT INTO history (exercise, time, date) VALUES (?,?,?);";
+    db.query(sqlInsert, [exercise, time, date ], (err,result) => {
     console.log(err);
     });
 });

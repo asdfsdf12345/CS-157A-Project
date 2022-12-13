@@ -6,6 +6,7 @@ import { UserContext } from '../UserContext';
 
 const FoodItems = () => {
   const {user,setUser} = useContext(UserContext);
+
   const [foodList, setFoodList] = useState([]);
   const[foodName, setFoodName] = useState('');
   const[calorieVal, setCalorieVal] = useState('');
@@ -31,6 +32,7 @@ const FoodItems = () => {
       protein: protein,
       sugar: sugar,
       fiber: fiber,
+      addedby: user,
       sodium: sodium,
     })
 

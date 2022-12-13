@@ -22,6 +22,7 @@ const Exercises = () => {
     {
       exercise: exercise, 
       caloricUsage: caloricUsage, 
+      addedBy: user,
     })
 
     setExerciseList([
