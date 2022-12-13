@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/api/get/exercises", (req,res)=> {
-const sqlSelect = "SELECT * FROM all_exercises WHERE userID = ?;";
+const sqlSelect = "SELECT * FROM all_exercises WHERE userID = ? OR addedBy = null;";
     db.query(sqlSelect, [user],(err,result) =>{
         res.send(result);
         
@@ -48,7 +48,7 @@ app.get("/api/get/routines", (req,res)=> {
     });
     
 app.get("/api/get/foods", (req,res)=> {
-    const sqlSelect = "SELECT * FROM ingredients WHERE addedBy = ? ";
+    const sqlSelect = "SELECT * FROM ingredients WHERE addedBy = ? OR addedBy = null";
         db.query(sqlSelect, [user], (err,result) =>{
             res.send(result);
         });
