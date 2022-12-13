@@ -23,6 +23,4 @@ host: "localhost",
     password: "password",
     database: "cs157a",
 
-You can run the sqlStatements.sql in the mySQL application to create the database and populate it. 
-
-I was the one who completed this work. 
+You can run the files in the in the sqlcode folder in the mySQL application to create the database and populate it. 
